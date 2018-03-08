@@ -9,12 +9,12 @@
     :copyright: (c) 2013 by Abhinav Singh.
     :license: BSD, see LICENSE for more details.
 """
-VERSION = (0, 2)
-__version__ = '.'.join(map(str, VERSION[0:2]))
+VERSION = (0, 3)
+__version__ = '.'.join(map(str, VERSION[0:3]))
 __description__ = 'HTTP Proxy Server in Python'
-__author__ = 'Abhinav Singh'
-__author_email__ = 'mailsforabhinav@gmail.com'
-__homepage__ = 'https://github.com/abhinavsingh/proxy.py'
+__author__ = 'bmcculley'
+__author_email__ = 'see@github.com'
+__homepage__ = 'https://github.com/bmcculley/proxy.py'
 __license__ = 'BSD'
 
 import sys
@@ -545,7 +545,17 @@ class HTTP(TCP):
         proc.start()
         logger.debug('Started process %r to handle connection %r' % (proc, client.conn))
 
-def main():
+def start(hostname, port, log_level):
+    
+    logging.basicConfig(level=getattr(logging, log_level), format='%(asctime)s - %(levelname)s - pid:%(process)d - %(message)s')
+    
+    try:
+        proxy = HTTP(hostname, int(port))
+        proxy.run()
+    except KeyboardInterrupt:
+        pass
+
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='proxy.py v%s' % __version__,
         epilog='Having difficulty using proxy.py? Report at: %s/issues/new' % __homepage__
@@ -556,16 +566,4 @@ def main():
     parser.add_argument('--log-level', default='INFO', help='DEBUG, INFO, WARNING, ERROR, CRITICAL')
     args = parser.parse_args()
     
-    logging.basicConfig(level=getattr(logging, args.log_level), format='%(asctime)s - %(levelname)s - pid:%(process)d - %(message)s')
-    
-    hostname = args.hostname
-    port = int(args.port)
-    
-    try:
-        proxy = HTTP(hostname, port)
-        proxy.run()
-    except KeyboardInterrupt:
-        pass
-
-if __name__ == '__main__':
-    main()
+    start(args.hostname, args.port, args.log_level)
