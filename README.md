@@ -46,4 +46,4 @@ Thanks
 ------
 
 Big thanks to everyone who worked on the
-[https://github.com/abhinavsingh/proxy.py](original project)
+[original project](https://github.com/abhinavsingh/proxy.py)
