@@ -2,6 +2,7 @@ proxy.py
 ========
 
 [![Build Status](https://travis-ci.org/bmcculley/proxy.py.svg?branch=master)](https://travis-ci.org/bmcculley/proxy.py)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/ce4xylhaefho5h2o?svg=true)](https://ci.appveyor.com/project/bmcculley/proxy-py)
 
 Lightweight HTTP Proxy Server in Python.
 
