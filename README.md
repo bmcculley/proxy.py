@@ -1,6 +1,8 @@
 proxy.py
 ========
 
+[![Build Status](https://travis-ci.org/bmcculley/proxy.py.svg?branch=master)](https://travis-ci.org/bmcculley/proxy.py)
+
 Lightweight HTTP Proxy Server in Python.
 
 Features
